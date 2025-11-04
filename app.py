@@ -4,6 +4,8 @@ It contains the definition of routes and views for the application.
 """
 
 from flask import Flask
+from services.tsforecastservice import sales_forecasts
+
 app = Flask(__name__)
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
@@ -14,6 +16,14 @@ wsgi_app = app.wsgi_app
 def hello():
     """Renders a sample page."""
     return "Hello World!"
+
+@app.route('/sales_forecast/<customerid>/<int:predictinterval>')
+def sales_forecast(customerid, predictinterval):
+    """Returns a dict"""
+
+    result = sales_forecasts(customerid, predictinterval)
+    return result
+
 
 if __name__ == '__main__':
     import os
