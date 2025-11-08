@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 import numpy as np
 
 def sales_forecasts(customerid, predictinterval):
@@ -52,5 +53,19 @@ def sales_forecasts_trainer(customerid):
 
     count, bins = np.histogram(df['TrxTotal'], bins=15)
     print("{} {}".format(count, bins))
+
+    dfts = df.loc[:, ['TransactionDate', 'TrxTotal']]
+
+    print(dfts.dtypes)
+
+    dfts.set_index('TransactionDate', inplace=True)
+
+    print(dfts)
+
+    dftsintp = dfts.asfreq('D', fill_value=df['TrxTotal'].mean())
+    dftsintp = dftsintp.sort_index()
+
+    print(dftsintp)
+
 
     return {"status": "success"}
