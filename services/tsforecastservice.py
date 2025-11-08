@@ -1,3 +1,5 @@
+import pandas as pd
+import numpy as np
 
 def sales_forecasts(customerid, predictinterval):
 
@@ -38,5 +40,17 @@ def sales_forecasts_trainer(customerid):
     print(df)
     print(df.dtypes)
 
+    df[['TrxTotal']] = df.groupby('TransactionDate').agg({'TransactionAmount': 'cumsum'})
+    df = df.drop_duplicates(subset=['TransactionDate'], keep='last', ignore_index=True)
+
+    print(df)
+
+    print("TrxTotal min:{} max:{} mean:{} median:{} std:{}".format(df['TrxTotal'].min(), df['TrxTotal'].max(), df['TrxTotal'].mean(), 
+                                                              df['TrxTotal'].median(), df['TrxTotal'].std()))
+
+    # Data exploration with histogram for distribution and scatterplot in JupyterLab project
+
+    count, bins = np.histogram(df['TrxTotal'], bins=15)
+    print("{} {}".format(count, bins))
 
     return {"status": "success"}
