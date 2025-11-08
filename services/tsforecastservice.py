@@ -67,5 +67,15 @@ def sales_forecasts_trainer(customerid):
 
     print(dftsintp)
 
+    print(dftsintp.loc['2013-01-01': '2013-12-31'])
+    print(dftsintp.loc['2014-01-01': '2014-12-31'])
+    print(dftsintp.loc['2015-01-01': '2015-12-31'])
+    print(dftsintp.loc['2016-01-01': '2016-12-31'])
+
+    dftsintp_train = dftsintp.loc['2016-01-01': '2016-04-30']
+    dftsintp_test = dftsintp.loc['2016-05-01': '2016-05-31']
+
+    print(dftsintp_train)
+    print(dftsintp_test)
 
     return {"status": "success"}
