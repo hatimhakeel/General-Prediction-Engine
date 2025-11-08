@@ -4,6 +4,11 @@ import numpy as np
 
 from skforecast.recursive import ForecasterRecursive
 from sklearn.ensemble import RandomForestRegressor
+from skforecast.model_selection import TimeSeriesFold, grid_search_forecaster
+from skforecast.utils import save_forecaster, load_forecaster
+
+sales_forecaster_model = 'salesforecaster.joblib'
+
 def sales_forecasts(customerid, predictinterval):
 
     """
@@ -89,5 +94,17 @@ def sales_forecasts_trainer(customerid):
     
     predictions = forecaster.predict(steps = 31)
     print(predictions.head(10))
+
+    results = grid_search_forecaster(forecaster = forecaster, y = dftsintp_train['TrxTotal'], 
+                                 cv = TimeSeriesFold(steps=31, initial_train_size=int(len(dftsintp_train) * 0.5),
+                                                    refit=False, fixed_train_size=False),
+                                lags_grid=[30], param_grid={'n_estimators': [5, 7, 12, 15, 50, 100, 150, 200, 250], 
+                                                          'max_depth': [5, 6, 7, 8, 9, 10]},
+                                metric='mean_squared_error', return_best=True, n_jobs='auto', verbose=False)
+
+    print(results)
+
+    save_forecaster(forecaster, file_name=f"models\{customerid}_{sales_forecaster_model}", verbose=False)
+
 
     return {"status": "success"}
