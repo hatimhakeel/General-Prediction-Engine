@@ -4,7 +4,7 @@ It contains the definition of routes and views for the application.
 """
 
 from flask import Flask
-from services.tsforecastservice import sales_forecasts
+from services.tsforecastservice import sales_forecasts_trainer, sales_forecasts
 
 app = Flask(__name__)
 
@@ -22,6 +22,10 @@ def sales_forecast(customerid, predictinterval):
     """Returns a dict"""
 
     result = sales_forecasts(customerid, predictinterval)
+@app.route('/sales_forecast/train/<customerid>')
+def sales_forecast_train(customerid):
+    
+    result = sales_forecasts_trainer(customerid)
     return result
 
 
