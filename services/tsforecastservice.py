@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
+from skforecast.recursive import ForecasterRecursive
+from sklearn.ensemble import RandomForestRegressor
 def sales_forecasts(customerid, predictinterval):
 
     """
@@ -77,5 +79,15 @@ def sales_forecasts_trainer(customerid):
 
     print(dftsintp_train)
     print(dftsintp_test)
+
+    # Forecaster model training and parameter tuning with grid search
+
+    forecaster = ForecasterRecursive(regressor=RandomForestRegressor(random_state=123, verbose=0, 
+                                                                 max_depth=5, n_estimators=5), lags=30)
+    forecaster.fit(y=dftsintp_train['TrxTotal'])
+    print(forecaster)
+    
+    predictions = forecaster.predict(steps = 31)
+    print(predictions.head(10))
 
     return {"status": "success"}
