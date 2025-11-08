@@ -34,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="data\WideWorldImporters_ToysAndMachines.csv" />
+    <Content Include="libman.json" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="data\" />
+    <Folder Include="models\" />
     <Folder Include="services\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />

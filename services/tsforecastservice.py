@@ -21,6 +21,17 @@ def sales_forecasts(customerid, predictinterval):
     Returns:
     dict: Forecasted sales results.
     """
+
+    forecaster_ffile = load_forecaster(file_name=f"models\{customerid}_{sales_forecaster_model}", verbose=True)
+
+    predictions = forecaster_ffile.predict(predictinterval);
+
+    predictions_formatted = predictions.to_json(orient='index', date_format='iso')
+
+
+    return {"status": "success", "forecasted_sales": predictions_formatted}
+    
+
 def sales_forecasts_trainer(customerid):
 
     """
@@ -41,13 +52,13 @@ def sales_forecasts_trainer(customerid):
         "May": 1500,
         "June": 1600,
     }
-    
+
     fpath = 'data\WideWorldImporters_ToysAndMachines.csv'
     df = pd.read_csv(fpath, parse_dates=['TransactionDate'], date_format='%m/%d/%Y')
 
     print(df)
     print(df.dtypes)
-
+    
     df[['TrxTotal']] = df.groupby('TransactionDate').agg({'TransactionAmount': 'cumsum'})
     df = df.drop_duplicates(subset=['TransactionDate'], keep='last', ignore_index=True)
 

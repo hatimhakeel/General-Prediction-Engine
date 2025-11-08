@@ -19,9 +19,16 @@ def hello():
 
 @app.route('/sales_forecast/<customerid>/<int:predictinterval>')
 def sales_forecast(customerid, predictinterval):
-    """Returns a dict"""
+    """Returns a json"""
 
     result = sales_forecasts(customerid, predictinterval)
+    print("Results")
+    print(result)
+    print("Type of result")
+    print(type(result))
+
+    return result
+
 @app.route('/sales_forecast/train/<customerid>')
 def sales_forecast_train(customerid):
     
