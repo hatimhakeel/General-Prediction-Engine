@@ -11,6 +11,17 @@ def sales_forecasts(customerid, predictinterval):
     Returns:
     dict: Forecasted sales results.
     """
+def sales_forecasts_trainer(customerid):
+
+    """
+    A service function for sales forecast model training.
+    
+    Parameters:
+    customerid (int): Input data for customer whose sales are to be forecasted.
+    
+    Returns:
+    string: Forecast model training status.
+    """
     # Simulate some processing
     forecasted_sales = {
         "January": 1200,
@@ -21,4 +32,11 @@ def sales_forecasts(customerid, predictinterval):
         "June": 1600,
     }
     
-    return {"status": "success", "forecasted_sales": forecasted_sales}
+    fpath = 'data\WideWorldImporters_ToysAndMachines.csv'
+    df = pd.read_csv(fpath, parse_dates=['TransactionDate'], date_format='%m/%d/%Y')
+
+    print(df)
+    print(df.dtypes)
+
+
+    return {"status": "success"}
