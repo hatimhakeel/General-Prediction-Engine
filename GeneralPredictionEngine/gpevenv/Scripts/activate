@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Hatim.Hakeel\source\repos\GeneralPredictionEngine\gpevenv"
+VIRTUAL_ENV="C:\Users\Hatim.Hakeel\source\repos\GeneralPredictionEngine\GeneralPredictionEngine\gpevenv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -363,9 +363,9 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Python packages/libraries folder for python virtual environment
-gpevenv/Lib
-gpevenv/Include
-gpevenv/share
+*/gpevenv/Lib
+*/gpevenv/Include
+*/gpevenv/share
 
 # VS Libs
 libman.json
