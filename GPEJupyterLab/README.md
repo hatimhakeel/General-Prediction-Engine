@@ -13,3 +13,10 @@
    ```
    .\Activate.ps1
    ```
+
+## Install and run JupyterLab
+
+1. From activated CLI session, install the JupyterLab coding notebook project
+   ```
+   pip install jupyterlab
+   ```
