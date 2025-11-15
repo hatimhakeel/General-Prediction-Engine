@@ -372,3 +372,7 @@ FodyWeavers.xsd
 
 # VS Libs
 libman.json
+
+# JupyterLab checkpoints
+*/.ipynb_checkpoints/*
+*/*/.ipynb_checkpoints/*-checkpoint.ipynb

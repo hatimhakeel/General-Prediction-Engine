@@ -20,3 +20,15 @@
    ```
    pip install jupyterlab
    ```
+2. Run JupyterLab
+   ```
+   jupyter lab
+   ```
+
+## ML data exploration & visualization
+
+1. Go to Jupyter Lab web url
+2. Create a new workspace name "labnotebooks"
+3. Go to the workspace
+4. Create the ML workbook
+5. Save with model, graphs & results
