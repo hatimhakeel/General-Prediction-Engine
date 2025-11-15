@@ -32,3 +32,17 @@
 3. Go to the workspace
 4. Create the ML workbook
 5. Save with model, graphs & results
+
+## Test API endpoints
+
+1. Start the GEP server
+2. Generate AI model
+   ```Power Shell
+   Invoke-WebRequest -Uri "http://localhost:{port}/sales_forecast/train/{merchant-id}" | Select-Object -ExpandProperty Content
+   Invoke-WebRequest -Uri "http://localhost:8888/sales_forecast/train/1" | Select-Object -ExpandProperty Content
+   ```
+3. Forecast sales
+   ```Power Shell
+   Invoke-WebRequest -Uri "http://localhost:{port}/sales_forecast/{merchant-id}/{forecast-period}" | Select-Object -ExpandProperty Content\
+   Invoke-WebRequest -Uri "http://localhost:8888/sales_forecast/1/31" | Select-Object -ExpandProperty Content
+   ```
